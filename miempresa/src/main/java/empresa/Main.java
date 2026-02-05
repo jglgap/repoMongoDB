@@ -17,17 +17,17 @@ public class Main {
 
         try (MongoProvider mgp = new MongoProvider()) {
             EmpleadoController empleadoController = new EmpleadoController(mgp);
-            // empleadoController.crearEmpleado("Juan", 10, 1000, "10/10/1999", null, 0);
-            // empleadoController.crearEmpleado("Alicia", 10, 1400, "07/08/2000",
-            // "profesor", 0);
-            // empleadoController.crearEmpleado("Maria Jesus", 20, 1500, "05/01/2005",
-            // "analista", 100);
-            // empleadoController.crearEmpleado("Alberto", 20, 1100, "15/11/2001", null, 0);
-            // empleadoController.crearEmpleado("Fernando", 30, 1400, "20/11/1999",
-            // "analista", 200);
-            // empleadoController.buscarEmpleados(new ArrayList<Integer>(List.of(10,20)), 0,
-            // null);
-            // empleadoController.aumentarSalarios("analista", 100);
+            empleadoController.crearEmpleado("Juan", 10, 1000, "10/10/1999", null, 0);
+            empleadoController.crearEmpleado("Alicia", 10, 1400, "07/08/2000",
+            "profesor", 0);
+            empleadoController.crearEmpleado("Maria Jesus", 20, 1500, "05/01/2005",
+            "analista", 100);
+            empleadoController.crearEmpleado("Alberto", 20, 1100, "15/11/2001", null, 0);
+            empleadoController.crearEmpleado("Fernando", 30, 1400, "20/11/1999",
+            "analista", 200);
+            empleadoController.buscarEmpleados(new ArrayList<Integer>(List.of(10,20)), 0,
+            null);
+            empleadoController.aumentarSalarios("analista", 100);
             List<Bson> media = Arrays.asList(
                     Aggregates.group(null, Accumulators.avg("media", "$salario")),
                     Aggregates.project(Projections.fields(
