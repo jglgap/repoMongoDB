@@ -1,0 +1,31 @@
+{
+    "idPedido" : 1,
+    "idCliente" : 2,
+    "fecha" : new Date("2014-05-16"),
+    "lineas" : [
+        {"sku": "A01", "nombre" : "Barril de Petroleo", "cantidad" : 20, "precio" : 24000.0},
+        {"sku" : "A02", "nombre" : "Mangos", "cantidad": 3500, "precio": 1200.0}
+    ],
+    "estado" :  true
+
+},
+{
+    "idPedido" : 2,
+    "idCliente" : 1,
+    "fecha" : new Date("2015-05-16"),
+    "lineas" : [
+        {"sku": "A03", "nombre" : "Puro Cubano", "cantidad" : 10, "precio" : 3000.0}
+    ],
+    "estado" :  true
+    
+},
+{
+    "idPedido" : 3,
+    "idCliente" : 1,
+    "fecha" : new Date("2013-05-16"),
+    "lineas" : [
+        {"sku": "A04", "nombre" : "Guandule", "cantidad" : 10, "precio" : 1500.0}
+    ],
+    "estado" :  true
+    
+}

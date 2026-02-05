@@ -1,0 +1,130 @@
+Comando para generar y usar base de datos
+-- test> use domotica
+
+Comando para crear una coleccion
+-- domotica> db.createCollection("mediciones")
+
+Comandos insertar 
+
+-- db.mediciones.insertOne({"sensorId":"23","ts":new Date("2026-01-14"),"tipo":"temp","valor":10,"ubicacion":"farmaceutica duran"})
+-- domotica> db.mediciones.insertOne({"sensorId":"12","ts":new Date("2026-01-22"),"tipo":"hum","valor":3,"ubicacion":"farmacia Los Montes"})
+-- domotica> db.mediciones.insertOne({"sensorId":"44","ts":new Date("2026-01-21"),"tipo":"hum","valor":4,"ubicacion":"farmacia Rosalia"})
+
+Comando consultas pro campo "sensorId" y "ts"
+
+-- domotica> db.mediciones.insertOne({"sensorId":"44","ts":new Date("2026-01-21"),"tipo":"hum","valor":"4","ubicacion":"farmacia Rosalia"})
+-- domotica> db.mediciones.find({"ts":{  $gte: new Date(Date.now() - 24 *60 *60 *1000)}})
+
+
+Comando consultar mediciones por encima del umbral
+
+-- domotica> db.mediciones.find({"valor":{$gt : 5} })
+
+Comando para actualizar multiples campos
+
+-- domotica> db.mediciones.updateMany({},{$inc :{"valor":10}})
+
+
+Comando para elimanar varios segun la fecha 
+
+-- domotica> db.mediciones.deleteMany({"ts": { $gt : new Date("2026-01-20"), $lt : new Date("2026-01-20")}})
+
+Comando para crear la base de datos
+
+-- use tienda
+
+
+Comando para crear colecciones
+-- domotica> db.createCollection("clientes")
+-- domotica> db.createCollection("pedidos")
+
+Comando para crear mulitples clientes y pedidos
+
+-- db.clientes.insertMany([
+    {
+    "idCliente" : 1,
+    "nombre" : "Hugo Rafael Chavez Frias",
+    "correosElectronicos" : ["presi@venezuela.ve","huguitoChavez@gmail.com"],
+    "direcciones" : [
+        {
+            "lugar" : "Sabaneta",
+            "estado" : "Barinas",
+            "pais" : "Venezuela"
+        },
+        {
+            "lugar" : "Miraflores",
+            "estado" : "Caracas",
+            "pais" : "Venezuela"
+        }
+    ]
+
+},
+{
+    "idCliente" : 2,
+    "nombre" : "Ernesto Che Guevara",
+    "correosElectronicos" : ["freeCuba@revolucion.cb","cheguevara@gmail.com"],
+    "direcciones" : [
+        {
+            "lugar" : "Rosario",
+            "estado" : "Santa Fe",
+            "pais" : "Argentina"
+        },
+        {
+            "lugar" : "Fortaleza",
+            "estado" : "La habana",
+            "pais" : "Cuba"
+        }
+    ]
+}
+])
+
+
+-- db.pedidos.insertMany([
+    {
+    "idPedido" : 1,
+    "idCliente" : 2,
+    "fecha" : new Date("2014-05-16"),
+    "lineas" : [
+        {"sku": "A01", "nombre" : "Barril de Petroleo", "cantidad" : 20, "precio" : 24000.0},
+        {"sku" : "A02", "nombre" : "Mangos", "cantidad": 3500, "precio": 1200.0}
+    ],
+    "estado" :  true
+
+},
+{
+    "idPedido" : 2,
+    "idCliente" : 1,
+    "fecha" : new Date("2015-05-16"),
+    "lineas" : [
+        {"sku": "A03", "nombre" : "Puro Cubano", "cantidad" : 10, "precio" : 3000.0}
+    ],
+    "estado" :  true
+    
+},
+{
+    "idPedido" : 3,
+    "idCliente" : 1,
+    "fecha" : new Date("2013-05-16"),
+    "lineas" : [
+        {"sku": "A04", "nombre" : "Guandule", "cantidad" : 10, "precio" : 1500.0}
+    ],
+    "estado" :  true
+    
+}
+])
+
+Comando para la busqueda de los pedidos de un cliente
+
+-- db.pedidos.find({"idCliente" : 1})
+
+Comando para la busqueda de pedido con una cantida mayor a 10
+
+-- tienda> db.pedidos.find({"lineas.cantidad": 10})
+
+Cambiar estado de un pedido
+
+-- tienda> db.pedidos.updateOne({"idPedido":2},{"estado":false})
+
+Cambiar correo de un cliente
+
+-- tienda> db.clientes.updateOne({"idCliente":2},{$set: {"correosElectronicos":["che@gmail.com"]}})
